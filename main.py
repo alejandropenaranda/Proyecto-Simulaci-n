@@ -76,4 +76,41 @@ def Jacobi_Sobre_Relajacion(A,b,x,n,tol,omega): # n es numero de iteraciones, om
     return x
 
 print('resultado Jacos',Jacobi_Sobre_Relajacion(A,bx,x,50,0.00000000001,1.013))
+# implementar la logica para el for
+def gradiente(A,B,x,n,tol):
+    d = B-(A.dot(x))
+    d_t = d.transpose()
+    print("D0",d)
 
+    r = B-(A.dot(x))
+    r_t = r.transpose()
+    print("R0",r)
+
+    denominador = (d_t.dot(A)).dot(d)
+    print("deno",denominador)
+
+    alpha = (r_t.dot(r))/denominador
+    print("alpha0", alpha)
+    #for i in range(n):
+    x1 = x+alpha*d
+    print("x1", x1)
+
+    r1 = r-((alpha*A).dot(d))
+    r1_t = r1.transpose()
+    print("r1",r1)
+
+    beta = (r1_t.dot(r1))/(r_t.dot(r))
+    print("beta1", beta)
+
+    d1 = r1+ beta*d
+    print("d1", d1)
+
+
+A = np.array([[2,-1],[-1,2]])
+print("A",A)
+
+x0 = np.array([0,0])
+
+B = np.array([1,0])
+print("B",B)
+#gradiente(A,B,x0)
